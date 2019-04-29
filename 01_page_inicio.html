@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Trinave</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="estilo.css">
+
+</head>
+
+<body>
+
+    <header id=cabecalho>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="col-md-4">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <picture>
+                        <img id=logo src="img/logos (6).png" width="300px" height="75px">
+                    </picture>
+                </a>
+            </div>
+            <div class="col-md-8">
+                <nav id="menu">
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">INÍCIO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="02_page_empresa.html">EMPRESA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="03_page_servico.html">SERVIÇOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="04_page_fale.html">FALE CONOSCO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="06_page_login.html">LOGIN</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main role="main">
+
+        <section class="jumbotron text-center">
+            <div class="container">
+                <img src="img/titulo.png" alt="Nome completo da empresa TRINAVE">
+            </div>
+        </section>
+
+        <section class="album py-5 bg-light">
+            <div class="container">
+                <div id=corpo>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="img/empresa.png" class="rounded mx-auto d-block" alt="Sobre nós">
+                            <button type="button" onclick="abrirPageEmpresa()"
+                                class="btn btn-primary btn-lg btn-block">Quem
+                                Somos?</butto>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="img/servicos.jpg" class="rounded mx-auto d-block" alt="Serviços">
+                            <button type="button" onclick="abrirPageServico()"
+                                class="btn btn-primary btn-lg btn-block">Nossos Serviços</button>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="img/noticias.png" class="rounded mx-auto d-block" alt="Serviços">
+                            <button type="button" onclick="abrirPageNoticia()"
+                                class="btn btn-primary btn-lg btn-block">Ultimas Notícias</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="img/algumacoisa.png" class="rounded mx-auto d-block" alt="Sobre nós">
+                            <button type="button" onclick="funcao()"
+                                class="btn btn-primary btn-lg btn-block">Alguma coisa!</butto>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="img/algumacoisa.png" class="rounded mx-auto d-block" alt="Serviços">
+                            <button type="button" onclick="funcao()"
+                                class="btn btn-primary btn-lg btn-block">Alguma coisa!</button>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="img/algumacoisa.png" class="rounded mx-auto d-block" alt="Serviços">
+                            <button type="button" onclick="funcao()"
+                                class="btn btn-primary btn-lg btn-block">Alguma coisa!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="rodape" class="text-muted">
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <p>Copyright 2013 © Company TRINAVE. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+
+        function abrirPageEmpresa() {
+            window.open("02_page_empresa.html", "_self");
+        }
+
+        function abrirPageServico() {
+            window.open("03_page_servico.html", "_self");
+        }
+
+        function abrirPageNoticia() {
+            window.open("05_page_noticia.html", "_self");
+        }
+
+    </script>
+
+</body>
+
+</html>
