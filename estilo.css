@@ -2,11 +2,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url(img/fundo.jpg);
     background-repeat: no-repeat;
-    width:100%;
-    height:992px;
-    background-position: center;
+    height: 1500px;
 }
 
 header#cabecalho img#logo {
@@ -44,6 +41,14 @@ a {
     background-color: green;
 }
 
+.nav-link {
+    color: #ffcc00;
+    text-decoration: none;
+    background-color: green;
+    border: px solid;
+
+}
+
 nav#menu a:hover {
     color: black;
     background-color: #ffcc00;
@@ -57,98 +62,96 @@ div#corpo {
     margin-right: auto
 }
 
-.titulo {
-    width: 500px;
-    height: 150px;
-    right: 960px;
-    top: 300px;
+/* ------------- CSS GLOBAIS ------------- */
+
+.imgtitulo {
+    width: 35%;
+    z-index: 999;
+    margin-top: 2%;
+}
+
+.imgPanorama {
+    width: 100%;
+    padding-top: 2%;
+}
+
+/* ----------- PAGINA: INICIO -----------  */
+
+.mainPageInicio {
+    height: 1000px
+}
+
+#imgTituloPrincipal {
+    margin-top: 3%;
+    margin-bottom: 3%
+}
+
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+    padding: -0.75rem;
+    background-color: green;
+    max-width: 100%;
 }
 
 /* ----------- PAGINA: EMPRESA -----------  */
 
 .mainPageEmpresa {
-    height: 1550px;
+    height: 1710px
 }
 
-.pageEmpresa {
-    background-color: white;
-    width: 100%;
-    height: 900px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-}
-
-.pageEmpresa h3 {
+.h3Titulo {
     background-color: #ffcc00;
-    padding: 20px;
-    margin: 10px;
+    padding: 2%;
+    margin: 0%;
 }
 
-.pageEmpresa p {
-   padding: 20px;
-   margin: 10px;
+p {
+    padding: 3%;
+    text-align: justify;
 }
 
-.pageEmpresa img {
-    background-position: center center;
-    padding: 0px;
-    margin: 10px;
-    height: 222px
+.paragrafoCentralizado {
+    text-align: center;
+    padding: 2%;
+    margin: 0%
+}
+
+.video{
+    margin-top: 5%;
+}
+
+iframe {
+    width: 94%;
+    position: relative;
+    left: 3%;
+    height: 600px;
 }
 
 /* ----------- PAGINA: SERVICO -----------  */
 
 .mainPageServico {
-    height: 1650px;
+    height: 1570px
 }
 
-.pageServico {
-    background-color: white;
+.imgServico {
     width: 100%;
-    height: 900px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto
+    padding-top: 5%;
 }
 
-.pageServico h3 {
+h3 {
     background-color: #ffcc00;
-    padding: 10px;
-    margin: 20px 15px;
+    padding: 2%;
+    margin-top: 5%;
 }
 
-.pageServicoa p {
-   padding: 20px;
-   margin: 10px;
+/* ----------- PAGINA: NOTICIA -----------  */
+
+#fomulario {
+    padding-top: 3%;
 }
 
-.pageServico img {
-    background-position: center center;
-    padding: 10px 30px;
-    margin: 10px;
-}
-
-/* ---------------------------------------  */
-
-.ml-auto, .mx-auto {
-    margin-left: auto!important;
-    padding: .25rem;
-    background-color: green;
-    border: 1px solid #dee2e6;
-    max-width: 100%;
-}
-
-.btn-primary {
-    color: black;
-    background-color: #ffcc00;
-    border-color: #ffcc00;
-}
-
-.btn-primary:hover {
-    color: black;
-    background-color: orange;
-    border-color: orange;
+.bg-dark {
+    background-color: green!important;
 }
 
 .map-container-6 {
@@ -166,39 +169,20 @@ div#corpo {
     position:absolute;
 }
 
-.jumbotron-fluid {
-    padding-right: 0;
-    padding-left: 0;
-    border-radius: 0;
-}
-
-.jumbotron {
-    padding: 2rem 1rem;
-    margin-bottom: 2rem;
-    background-color: #e9ecef;
-    border-radius: .3rem;
-}
-
 div#map-container-google-11 {
     height: 440px;
 } 
 
-/* ----------- PAGINA: NOTICIA -----------  */
-
-.bg-dark {
-    background-color: green!important;
+.btn-primary {
+    color: black;
+    background-color: #ffcc00;
+    border-color: #ffcc00;
 }
 
-.jumbotron {
-    padding: 1rem 1rem;
-    margin-bottom: 1rem;
-    background-color: transparent!important;
-    border-radius: .2rem;
-}
-
-.bg-light {
-    background-color: #e9ecef!important;
-    height: 1000px;
+.btn-primary:hover {
+    color: black;
+    background-color: orange;
+    border-color: orange;
 }
 
 /* ----------- PAGINA: LOGIN -----------  */
@@ -215,11 +199,9 @@ div#map-container-google-11 {
 
 footer#rodape {
     background-color: green;
-    width: 150%;
-    height: 100px;
     display: block;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
 }
 
 footer#rodape p {
