@@ -6,66 +6,10 @@ body {
     height: 1500px;
 }
 
-header#cabecalho img#logo {
-    width: 300px;
-    height: 75px;
-}
-
-nav#menu {
-    display: block;
-}
-
-nav#menu ul {
-    list-style: none;
-    text-transform: uppercase;
-    position: absolute;
-    top: -30px;
-    
-}
-
-nav#menu li {
-    font-family: 'Fonte', sans-serif;
-    display: inline-block;
-    padding: 10px;
-    margin: 2px;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #ffcc00;
-    background-color: green;
-}
-
-a {
-    color: #ffcc00;
-    text-decoration: none;
-    background-color: green;
-}
-
-.nav-link {
-    color: #ffcc00;
-    text-decoration: none;
-    background-color: green;
-    border: px solid;
-
-}
-
-nav#menu a:hover {
-    color: black;
-    background-color: #ffcc00;
-}
-
-div#corpo {
-    width: 90%;
-    height: 500px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-}
-
 /* ------------- CSS GLOBAIS ------------- */
 
 .imgtitulo {
-    width: 35%;
+    width: 18%;
     z-index: 999;
     margin-top: 2%;
 }
@@ -75,22 +19,94 @@ div#corpo {
     padding-top: 2%;
 }
 
+.container {
+    max-width: 1000px;
+}
+
+/* ---------------- MENU ---------------- */
+
+#cabecalho {
+    background-color: green;
+}
+
+#menu {
+    display: flex;
+    margin-top: 3%;
+    margin-left: 20%;
+}
+
+.nav-pills .nav-link.active {
+    color: green;
+    background-color: #ffcc00;
+    width: 100%;
+    text-align: center;
+}
+
+a {
+    color: #ffcc00;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.nav-pills .nav-link.active:hover {
+    color: black;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
 /* ----------- PAGINA: INICIO -----------  */
 
 .mainPageInicio {
-    height: 1000px
+    height: 2790px;
 }
+
+#carouselExampleControls {
+
+margin-top: 3%;
+margin-left: auto;
+margin-right: auto;
+width: 100%
+}
+
 
 #imgTituloPrincipal {
     margin-top: 3%;
-    margin-bottom: 3%
+    margin-bottom: 3%;
+    width: 100%;
 }
 
 .ml-auto, .mx-auto {
     margin-left: auto!important;
     padding: -0.75rem;
-    background-color: green;
     max-width: 100%;
+}
+
+.h4, h4 {
+    font-size: 1.8rem;
+    text-align: center;
+    padding-top: 10%;
+}
+
+.jumbotron {
+    padding: 0rem 2rem;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+.imgNoticia {
+    width: 100%;
+    height: 400px;
 }
 
 /* ----------- PAGINA: EMPRESA -----------  */
@@ -105,12 +121,12 @@ div#corpo {
     margin: 0%;
 }
 
-p {
+.pJustify {
     padding: 3%;
     text-align: justify;
 }
 
-.paragrafoCentralizado {
+.pCenter {
     text-align: center;
     padding: 2%;
     margin: 0%
