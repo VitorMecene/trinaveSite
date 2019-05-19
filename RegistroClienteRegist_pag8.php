@@ -39,7 +39,7 @@
                             <a class="nav-link active" href="04_page_fale.html">FALE CONOSCO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="LoguinAtividade3_pag1.php">LOGUIN</a>
+                            <a class="nav-link active" href="08_page_loguin.php">LOGUIN</a>
                         </li>
                     </ul>
                 </nav>
