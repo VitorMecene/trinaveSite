@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="estilo.css">
 
-    <title>Login</title>
+    <title>Pedidos</title>
 
 </head>
 
@@ -54,31 +54,36 @@
 
     <main class="sistemaInicio" role="main">
 
+
         <section class="container">
 
             <div class="row">
                 <div class="col-3">
                     <a class="sistemaMenu" data-toggle="pill" href="FornecedorPrinc_pag4.php" role="tab" aria-controls="v-pills-home" aria-selected="true"><img class="iconMenu" src="img/casa.png" alt="Home">Principal</a>
                 </div>
+
                 <div class="col-3">
                     <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="RegistroCliente_pag5.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/clientes.png" alt="Clientes">Cadastre seus Clientes</a>
                 </div>
+
                 <div class="col-3">
                     <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="AcomPedido_pag6.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/pedidos1.png" alt="Pedidos">Pedidos</a>
                 </div>
+
                 <div class="col-3">
                     <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="ProdutosEstoque_pag7.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/estoque.png" alt="Estoque">Produtos e Estoque</a>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <h1 class="tituloSistema">Bem Vindo!</h1>
-                </div>
-            </div>
+            <h1 class="tituloSistema">Acompanhamento do Pedido</h1>
+
+            <form class="formularioCliente" action="..." method="post">
+
+                <!---------- ADICIONAR COISAS SOMENTE AQUI ---------->
+
+            </form>
 
         </section>
-
     </main>
 
     <footer id="rodape" class="text-muted">

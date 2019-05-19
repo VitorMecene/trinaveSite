@@ -1,10 +1,10 @@
 @charset "UTF-8";
-
 body {
     font-family: Arial, sans-serif;
     background-repeat: no-repeat;
-    height: 1500px;
+    height: 1000px;
 }
+
 
 /* ------------- CSS GLOBAIS ------------- */
 
@@ -22,6 +22,7 @@ body {
 .container {
     max-width: 1000px;
 }
+
 
 /* ---------------- MENU ---------------- */
 
@@ -44,8 +45,6 @@ body {
 
 a {
     color: #ffcc00;
-    text-decoration: none;
-    background-color: transparent;
 }
 
 a:hover {
@@ -70,13 +69,11 @@ a:hover {
 }
 
 #carouselExampleControls {
-
-margin-top: 3%;
-margin-left: auto;
-margin-right: auto;
-width: 100%
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
 }
-
 
 #imgTituloPrincipal {
     margin-top: 3%;
@@ -84,13 +81,15 @@ width: 100%
     width: 100%;
 }
 
-.ml-auto, .mx-auto {
+.ml-auto,
+.mx-auto {
     margin-left: auto!important;
     padding: -0.75rem;
     max-width: 100%;
 }
 
-.h4, h4 {
+.h4,
+h4 {
     font-size: 1.8rem;
     text-align: center;
     padding-top: 10%;
@@ -108,6 +107,7 @@ width: 100%
     width: 100%;
     height: 400px;
 }
+
 
 /* ----------- PAGINA: EMPRESA -----------  */
 
@@ -132,7 +132,7 @@ width: 100%
     margin: 0%
 }
 
-.video{
+.video {
     margin-top: 5%;
 }
 
@@ -142,6 +142,7 @@ iframe {
     left: 3%;
     height: 600px;
 }
+
 
 /* ----------- PAGINA: SERVICO -----------  */
 
@@ -160,6 +161,7 @@ h3 {
     margin-top: 5%;
 }
 
+
 /* ----------- PAGINA: NOTICIA -----------  */
 
 #fomulario {
@@ -171,45 +173,98 @@ h3 {
 }
 
 .map-container-6 {
-    overflow:hidden;
-    padding-bottom:56.25%;
-    position:relative;
-    height:0;
- }
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
 
 .map-container-6 iframe {
-    left:0;
-    top:0;
-    height:100%;
-    width:100%;
-    position:absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
 div#map-container-google-11 {
     height: 440px;
-} 
+}
 
 .btn-primary {
+    color: black;
+    background-color: #ffcc00;
+    border-color: green;
+}
+
+.btn-primary:hover {
     color: black;
     background-color: #ffcc00;
     border-color: #ffcc00;
 }
 
-.btn-primary:hover {
-    color: black;
-    background-color: orange;
-    border-color: orange;
-}
 
 /* ----------- PAGINA: LOGIN -----------  */
 
+.mainPageLogin {
+    height: 770px;
+}
+
 .pageLogin {
     width: 35%;
-    height: 500px;
-    display: block;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
+    margin-top: 15%;
 }
+
+
+/* --------------- SISTEMA ---------------  */
+
+.sistemaInicio {
+    height: 950px;
+    margin-top: 5%;
+}
+
+.tituloSistema {
+    font-size: 2.8rem;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 2%;
+}
+
+.sistemaMenu {
+    text-align: center;
+    display: block;
+    padding: .5rem 1rem;
+    color: green;
+    background-color: #ffcc00;
+}
+
+.sistemaMenu:hover {
+    display: block;
+    text-align: center;
+    background-color: #ffcc00;
+    padding: .5rem 1rem;
+}
+
+.iconMenu {
+    width: 75%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+
+.sistemaCliente {
+    height: 950px;
+    margin-top: 5%;
+}
+
+.formularioCliente {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 /* ----------- PAGINA: RODAPÉ -----------  */
 
@@ -221,11 +276,9 @@ footer#rodape {
 }
 
 footer#rodape p {
-    color: goldenrod;
+    color: #ffcc00;
     text-align: center;
     padding: 20px;
     margin: 10px;
     right: 1000px;
 }
-
-/* --------------------------------------  */
