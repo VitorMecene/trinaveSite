@@ -67,22 +67,22 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
 
             <div class="row">
                 <div class="col-3">
-                    <a class="sistemaMenu" data-toggle="pill" href="FornecedorPrinc_pag4.php" role="tab" aria-controls="v-pills-home" aria-selected="true"><img class="iconMenu" src="img/casa.png" alt="Home">Principal</a>
+                    <a class="sistemaMenu" data-toggle="pill" href="07_page_sisPrincipal.php" role="tab" aria-controls="v-pills-home" aria-selected="true"><img class="iconMenu" src="img/casa.png" alt="Home">Principal</a>
                 </div>
                 <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="RegistroCliente_pag5.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/clientes.png" alt="Clientes">Cadastre seus Clientes</a>
+                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="09_page_RegistroCliente.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/clientes.png" alt="Clientes">Cadastre seus Clientes</a>
                 </div>
                 <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="AcomPedido_pag6.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/pedidos1.png" alt="Pedidos">Pedidos</a>
+                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="11_page_AcomPedido.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/pedidos1.png" alt="Pedidos">Pedidos</a>
                 </div>
                 <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="ProdutosEstoque_pag7.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/estoque.png" alt="Estoque">Produtos e Estoque</a>
+                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="12_page_ProdutosEstoque.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/estoque.png" alt="Estoque">Produtos e Estoque</a>
                 </div>
             </div>
 
             <h1 class="tituloSistema">Registro de Clientes</h1><br>
 
-            <form class="formularioCliente" action="RegistroClienteRegist_pag8.php" method="post">
+            <form class="formularioCliente" action="10_page_RegistroClienteConfirm.php" method="post">
 
                 <div class="row">
                     <div class="col">&nbspNome <br> <input type="text" class="form-control" name="nome" placeholder="Digite seu nome"></div>

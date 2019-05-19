@@ -1,3 +1,9 @@
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
+  session_start();
+}
+?>
+
 <!doctype html>
 <html lang="pt-br">
 
@@ -20,14 +26,14 @@
     <header id=cabecalho>
         <div class="container">
             <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                     <a href="#" class="navbar-brand d-flex align-items-center">
                         <picture>
                             <img id=logo src="img/logos (6).png" width="300px" height="75px">
                         </picture>
                     </a>
                 </div>
-                <div class="col-8">
+                <div class="col-9">
                     <nav id="menu">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
@@ -43,7 +49,8 @@
                                 <a class="nav-link" href="04_page_fale.html">CONTATO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="08_page_loguin.php">LOGIN</a>
+                                <a class="nav-link" href="06_page_loguin.php">SAIR</a>
+                                <?php echo"<a href=''><h6>Olá ".$_SESSION['nome']."</h5></a>"?>
                             </li>
                         </ul>
                     </nav>

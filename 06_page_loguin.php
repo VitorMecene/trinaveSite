@@ -1,8 +1,4 @@
-<?php
-if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
-  session_start();
-}
-?>
+<?php session_start(); ?>
 
 <!doctype html>
 <html lang="pt-br">
@@ -18,6 +14,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
     <link rel="stylesheet" href="estilo.css">
 
     <title>Login</title>
+
 
 </head>
 
@@ -49,8 +46,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                                 <a class="nav-link" href="04_page_fale.html">CONTATO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="06_page_loguin.php">SAIR</a>
-                                <?php echo"<a href=''><h6>Olá ".$_SESSION['nome']."</h5></a>"?>
+                                <a class="nav-link active" href="#">ENTRAR</a>
                             </li>
                         </ul>
                     </nav>
@@ -59,33 +55,41 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
         </div>
     </header>
 
-    <main class="sistemaInicio" role="main">
+    <main class="mainPageLogin" role="main">
 
         <section class="container">
+            <div class="pageLogin">
 
-            <div class="row">
-                <div class="col-3">
-                    <a class="sistemaMenu" data-toggle="pill" href="FornecedorPrinc_pag4.php" role="tab" aria-controls="v-pills-home" aria-selected="true"><img class="iconMenu" src="img/casa.png" alt="Home">Principal</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="RegistroCliente_pag5.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/clientes.png" alt="Clientes">Cadastre seus Clientes</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="AcomPedido_pag6.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/pedidos1.png" alt="Pedidos">Pedidos</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="ProdutosEstoque_pag7.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/estoque.png" alt="Estoque">Produtos e Estoque</a>
-                </div>
+                <form method="post" class="form-signin" action="loguin.php?">
+
+                    <div class="form-label-group">
+                        <label for="inputEmail">Endereço de E-mail</label>
+                        <input type="email" name="email" class="form-control" placeholder="Endereço de email" required autofocus>
+                    </div>
+                    <?php
+                    // verifica se a variavel session['invalido'] existe, se existir mostra o erro
+                    if (isset($_SESSION["invalido"])) {
+                        $dados_invalidos = $_SESSION["invalido"];
+                        echo "<span class='red'>$dados_invalidos</span>";
+                    }
+                    ?><br>
+                    <div class="form-label-group">
+                        <label for="inputPassword">Senha</label>
+                        <input type="password" name="senha" class="form-control" placeholder="Senha" required>
+                    </div><br>
+
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="lembrar de mim"> Lembrar de mim
+                        </label>
+                    </div>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+                    <a href="08_page_CadastroFornecedor.php" class="btn btn-lg btn-primary btn-block">Cadastre-se</a>
+                </form>
+
             </div>
-
-            <div class="row">
-                <div class="col">
-                    <h1 class="tituloSistema">Bem Vindo!</h1>
-                </div>
-            </div>
-
         </section>
-
     </main>
 
     <footer id="rodape" class="text-muted">
@@ -97,3 +101,5 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
 </body>
 
 </html>
+
+<?php unset($_SESSION["invalido"]); ?>

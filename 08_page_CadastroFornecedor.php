@@ -1,9 +1,3 @@
-<?php
-if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
-  session_start();
-}
-?>
-
 <!doctype html>
 <html lang="pt-br">
 
@@ -17,7 +11,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
 
     <link rel="stylesheet" href="estilo.css">
 
-    <title>Login</title>
+    <title>Pedidos</title>
 
 </head>
 
@@ -49,8 +43,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                                 <a class="nav-link" href="04_page_fale.html">CONTATO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="06_page_loguin.php">SAIR</a>
-                                <?php echo"<a href=''><h6>Olá ".$_SESSION['nome']."</h5></a>"?>
+                                <a class="nav-link" href="06_page_loguin.php">ENTRAR</a>
                             </li>
                         </ul>
                     </nav>
@@ -59,31 +52,33 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
         </div>
     </header>
 
-    <main class="sistemaInicio" role="main">
+    <main class="mainPageLogin" role="main">
 
-        <section class="container">
-
+        <section class="album py-5 bg-light">
+            <div class="container">
+            <div class="row"><div class="col row justify-content-center rounded"></div><div class="col mr-5"><h4>Seja Bem Vindo!</h4><br></div><div class="col"></div></div>
             <div class="row">
-                <div class="col-3">
-                    <a class="sistemaMenu" data-toggle="pill" href="FornecedorPrinc_pag4.php" role="tab" aria-controls="v-pills-home" aria-selected="true"><img class="iconMenu" src="img/casa.png" alt="Home">Principal</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="RegistroCliente_pag5.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/clientes.png" alt="Clientes">Cadastre seus Clientes</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="AcomPedido_pag6.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/pedidos1.png" alt="Pedidos">Pedidos</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="ProdutosEstoque_pag7.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/estoque.png" alt="Estoque">Produtos e Estoque</a>
+                <div class="col row justify-content-center rounded">
+                    <div class="border">
+                    
+                        <form action="08_page_CadastroFornecConfirm.php" method="post">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">Nome <br> <input type="text" class="form-control" name ="nome" placeholder="Digite seu nome"></div>
+                                    <div class="col">CNPJ <br> <input type="text" name="cnpj" class="form-control" maxlength="18" placeholder="Digite o Cnpj" OnKeyPress="formatar('##.###.###/####-##', this)" ></div>
+                                </div>
+                            </div><br><br>
+                            <div class="col">Setor de Atividade <input type="text" class="form-control" name="setor" placeholder="Descreva sua area de atuação"><br></div>
+                            <div class="col">Telefone<br><input type="text" name="telefone" class="form-control" maxlength="14" placeholder="Digite DDD + telefone" OnKeyPress="formatar('## #####-####', this)"><br></div>
+                            <div class="col">E-mail<br><input type="email" name="email" class="form-control" placeholder="Digite um e-mail"><br></div>
+                            <div class="col">Senha<br><input type="password" name="senha" class="form-control" placeholder="Crie uma senha"><br></div>
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+                        </form>
+                        
+                    </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col">
-                    <h1 class="tituloSistema">Bem Vindo!</h1>
-                </div>
-            </div>
-
         </section>
 
     </main>

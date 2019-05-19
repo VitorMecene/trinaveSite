@@ -1,9 +1,3 @@
-<?php
-if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
-  session_start();
-}
-?>
-
 <!doctype html>
 <html lang="pt-br">
 
@@ -17,7 +11,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
 
     <link rel="stylesheet" href="estilo.css">
 
-    <title>Login</title>
+    <title>Pedidos</title>
 
 </head>
 
@@ -49,8 +43,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                                 <a class="nav-link" href="04_page_fale.html">CONTATO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="06_page_loguin.php">SAIR</a>
-                                <?php echo"<a href=''><h6>Olá ".$_SESSION['nome']."</h5></a>"?>
+                                <a class="nav-link" href="06_page_loguin.php">ENTRAR</a>
                             </li>
                         </ul>
                     </nav>
@@ -59,31 +52,39 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
         </div>
     </header>
 
-    <main class="sistemaInicio" role="main">
+    <main class="mainPageLogin" role="main">
 
-        <section class="container">
-
+        <section class="album py-5 bg-light">
+            <div class="container">
             <div class="row">
-                <div class="col-3">
-                    <a class="sistemaMenu" data-toggle="pill" href="FornecedorPrinc_pag4.php" role="tab" aria-controls="v-pills-home" aria-selected="true"><img class="iconMenu" src="img/casa.png" alt="Home">Principal</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="RegistroCliente_pag5.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/clientes.png" alt="Clientes">Cadastre seus Clientes</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="AcomPedido_pag6.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/pedidos1.png" alt="Pedidos">Pedidos</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="ProdutosEstoque_pag7.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/estoque.png" alt="Estoque">Produtos e Estoque</a>
+                <div class="col row justify-content-center rounded">
+
+                <?php
+                    include("funcoes.php");
+
+                    date_default_timezone_set('America/Sao_Paulo');
+
+                    
+                    $nome = $_POST["nome"];
+                    $cnpj = $_POST["cnpj"];
+                    $setor = $_POST["setor"];
+                    $telefone = $_POST["telefone"];
+                    $email = $_POST["email"];
+                    $senha = $_POST["senha"];
+                    
+                    $sucesso = InsereFornecedor($nome, $cnpj, $telefone, $email, $senha);
+                    
+                    if($sucesso == 1)
+                       echo "<h2>Cadastro Realizado com Sucesso!</h2>";
+                    else
+                        echo "<h2>Oh oh oh....<br>Aconteceu alguma coisa errada, tente novamente!</h2>";
+
+                ?>
+
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <h1 class="tituloSistema">Bem Vindo!</h1>
-                </div>
             </div>
-
         </section>
 
     </main>

@@ -32,5 +32,4 @@ function InsereCliente($nome, $cnpj, $telefone, $endereco, $n, $bairro, $cidade,
     return $get;
 }
 
-
 ?>
