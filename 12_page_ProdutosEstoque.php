@@ -51,7 +51,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                                 <a class="nav-link" href="04_page_fale.html">CONTATO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="06_page_loguin.php">SAIR</a>
+                                <a class="nav-link" href="13_page_Deslogando.php">SAIR</a>
                                 <?php echo"<a href=''><h6>Olá ".$_SESSION['nome']."</h5></a>"?>
                             </li>
                         </ul>
