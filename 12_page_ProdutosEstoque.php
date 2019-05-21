@@ -82,7 +82,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
 
             <h1 class="tituloSistema">Produtos e Estoque</h1><br>
 
-            <form method="post" class="form-signin" action="loguin.php?">
+            <form method="post" class="form-signin" action="12_page_ProdutosEstoque.php?op=Incluir">
                 <table class="col table">
                     <tr>
                         <th scope="col-2">Perfil:<br><br><br>Descrição:</th>
@@ -134,24 +134,95 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                     </tr>
 
                 </table>
+                
+                <?php
+                    include("funcoes.php");
+
+                    if ($_GET['op'] == 'Incluir') {
+
+                        $valor = $_POST['valor'];
+                        $ativo = 1;
+                        $perfil = $_POST['perfil'];
+                        $descricao = $_POST['descricao'];
+                        $observacao = $_POST['observacao'];
+                        $largura = $_POST['largura'];
+                        $comprimento = $_POST['comprimento'];
+                        $espessura = $_POST['espessura'];
+                        $quantidade = $_POST['quantidade'];
+                        $peso = $_POST['peso'];
+                        
+                        $sql = InsereProduto($_SESSION['id'], $_SESSION['nome'], $valor, $ativo, $perfil, $descricao, $observacao, $largura, $comprimento, $espessura, $quantidade, $peso);
+                        $resultado = mysqli_query($banco,$sql);
+                        if($resultado != NULL)
+                            echo "Produto registrado com sucesso!";
+                        else
+                            echo "Houve algo errado";   
+                    }
+                ?>
+                
+                <!--h1 class="tituloSistema">Seu Estoque</h1><br>
+                <hr>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <td> Id </td>
+                            <td> Perfil </td>
+                            <td> Largura </td>
+                            <td> Comprimento</td>
+                            <td> Espessura </td>
+                            <td> Descriçao </td>
+                            <td> Peso </td>
+                            <td> Valor do Produto </td>
+                            <td> Quantidade </td>
+                            <td> Valor total </td>
+                            <td> Peso total </td>
+                            <td> Observações </td>
+                        </tr>
+                    </thead>
+                    <//?php
+                        
+                        $sql = "SELECT  id, perfil, largura, comprimento, espessura, descricao, peso, valor, quantidade, observacoes 
+                        FROM produto WHERE id_fornecedor = ".$_SESSION['id'];
+                        $resultado = mysqli_query($banco,$sql);
+                        $num = mysqli_num_rows($resultado);
+                        
+                        if($num == 1) {
+                        while($produtos = mysqli_fetch_assoc($resultado)):
+                    ?>
+                    <tr>
+                        <td> <//?= $produtos['id'] ?> </td>
+                        <td> <//?= $produtos['perfil'] ?> </td>
+                        <td> <//?= $produtos['largura'] ?> </td>
+                        <td> <//?= $produtos['comprimento'] ?> </td>
+                        <td> <//?= $produtos['espessura'] ?> </td>
+                        <td> <//?= $produtos['descricao'] ?> </td>
+                        <td> <//?= $produtos['peso'] ?> </td>
+                        <td> <//?= $produtos['valor'] ?> </td>
+                        <td> <//?= $produtos['quantidade'] ?> </td>
+                        <td> <//?= $produtos['quantidade']*$produtos['valor'] ?> </td>
+                        <td> <//?= $produtos['quantidade']*$produtos['peso'] ?> </td>
+                        <td> <//?= $produtos['observacoes'] ?> </td>
+
+                        <td> 
+                            <a href="editar.php?id=<//?= $produtos['id'] ?>">Editar</a>  | 
+                            <a href="excluir.php?id=<//?= $produtos['id'] ?>">Excluir</a> 
+                        </td>
+                    </tr>
+                    <//?php endwhile; }
+                    else{
+                        echo "<h2>Produto não cadastrado.</h2>";
+                    };
+                    ?>
+                -->
+                </table>
             </form>
-
-            <?php
-                            include("funcoes.php");
-
-                            echo"<a href='07_page_sisPrincipal.php'><h6>Olá ".$_SESSION['id']."</h5></a>";
-
-            ?>
-
         </section>
     </main>
+    </body>
+    </html>
 
     <footer id="rodape" class="text-muted">
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <p>Copyright 2013 © Company TRINAVE. Todos os direitos reservados.</p>
         </div>
     </footer>
-
-</body>
-
-</html>

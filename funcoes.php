@@ -32,4 +32,13 @@ function InsereCliente($nome, $cnpj, $telefone, $endereco, $n, $bairro, $cidade,
     return $get;
 }
 
+function InsereProduto($id_fornecedor, $nome, $valor, $ativo, $perfil, $descricao, $observacao, $largura, $comprimento, $espessura, $quantidade, $peso){
+    $banco = ConectarBanco();
+    $sql = "INSERT INTO cliente(id_fornecedor, nome, valor, ativo, perfil, descricao, observacao, largura, comprimento, espessura, quantidade, peso) 
+    VALUES ('".$id_fornecedor."','".$nome."','".$valor."','".$ativo."','".$perfil."','".$descricao."','".$observacao."','".$largura."','".$comprimento."','".$espessura."','".$quantidade."','".$peso."')";
+    $get = mysqli_query($banco,$sql);
+
+    return $get;
+}
+
 ?>
