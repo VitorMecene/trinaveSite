@@ -61,7 +61,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
         </div>
     </header>
 
-    <main class="sistemaInicio" role="main">
+    <main class="sistemaEstoque" role="main">
 
         <section class="container">
 
@@ -85,6 +85,33 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
             <form method="post" class="form-signin" action="12_page_ProdutosEstoque.php?op=Incluir">
                 <table class="col table">
                     <tr>
+
+                    <div class="modal fade" id="myModalcad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title text-center" id="myModalLabel">Cadastrar Curso</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="http://localhost/Aula/processa_cad.php" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="control-label">Nome:</label>
+                                            <input name="nome" type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="control-label">Detalhes:</label>
+                                            <textarea name="detalhes" class="form-control"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Cadastrar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                         <th scope="col-2">Perfil:<br><br><br>Descrição:</th>
                         <th scope="col"><select name="perfil" class="form-control">
                                 <option value="">Escolha</option>
@@ -160,7 +187,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                     }
                 ?>
                 
-                <!--h1 class="tituloSistema">Seu Estoque</h1><br>
+                <h1 class="tituloSistema">Seu Estoque</h1><br>
                 <hr>
                 <table class="table table-dark">
                     <thead>
@@ -179,7 +206,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                             <td> Observações </td>
                         </tr>
                     </thead>
-                    <//?php
+                    <?php
                         
                         $sql = "SELECT  id, perfil, largura, comprimento, espessura, descricao, peso, valor, quantidade, observacoes 
                         FROM produto WHERE id_fornecedor = ".$_SESSION['id'];
@@ -190,30 +217,29 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                         while($produtos = mysqli_fetch_assoc($resultado)):
                     ?>
                     <tr>
-                        <td> <//?= $produtos['id'] ?> </td>
-                        <td> <//?= $produtos['perfil'] ?> </td>
-                        <td> <//?= $produtos['largura'] ?> </td>
-                        <td> <//?= $produtos['comprimento'] ?> </td>
-                        <td> <//?= $produtos['espessura'] ?> </td>
-                        <td> <//?= $produtos['descricao'] ?> </td>
-                        <td> <//?= $produtos['peso'] ?> </td>
-                        <td> <//?= $produtos['valor'] ?> </td>
-                        <td> <//?= $produtos['quantidade'] ?> </td>
-                        <td> <//?= $produtos['quantidade']*$produtos['valor'] ?> </td>
-                        <td> <//?= $produtos['quantidade']*$produtos['peso'] ?> </td>
-                        <td> <//?= $produtos['observacoes'] ?> </td>
+                        <td> <?= $produtos['id'] ?> </td>
+                        <td> <?= $produtos['perfil'] ?> </td>
+                        <td> <?= $produtos['largura'] ?> </td>
+                        <td> <?= $produtos['comprimento'] ?> </td>
+                        <td> <?= $produtos['espessura'] ?> </td>
+                        <td> <?= $produtos['descricao'] ?> </td>
+                        <td> <?= $produtos['peso'] ?> </td>
+                        <td> <?= $produtos['valor'] ?> </td>
+                        <td> <?= $produtos['quantidade'] ?> </td>
+                        <td> <?= $produtos['quantidade']*$produtos['valor'] ?> </td>
+                        <td> <?= $produtos['quantidade']*$produtos['peso'] ?> </td>
+                        <td> <?= $produtos['observacoes'] ?> </td>
 
                         <td> 
-                            <a href="editar.php?id=<//?= $produtos['id'] ?>">Editar</a>  | 
-                            <a href="excluir.php?id=<//?= $produtos['id'] ?>">Excluir</a> 
+                            <a href="editar.php?id=<?= $produtos['id'] ?>">Editar</a>  | 
+                            <a href="excluir.php?id=<?= $produtos['id'] ?>">Excluir</a> 
                         </td>
                     </tr>
-                    <//?php endwhile; }
+                    <?php endwhile; }
                     else{
                         echo "<h2>Produto não cadastrado.</h2>";
                     };
                     ?>
-                -->
                 </table>
             </form>
         </section>
