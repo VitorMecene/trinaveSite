@@ -36,6 +36,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                 session_start();
                 $_SESSION['nome'] = $nome;
                 $_SESSION['id'] = $usuario;
+                $_SESSION['prod'] = 0;
          }
         header("location: 07_page_sisPrincipal.php"); 
         }else{
