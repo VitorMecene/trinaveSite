@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://cookies.pn.vg/cookie.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Pushnews Bolachas</title>
+</head>
+<body>
+<!--
+Are you investigating us?
+
+Cool!
+
+Want to join our amazing team?
+
+Reach us at https://www.pushnews.eu and tell us you found this message! :-)
+-->
+<script>
+	/* bellow you can find a sample incoming message format */
+	var dataTemplate = {
+		type: "ping",
+		data: {
+			responseType: "echo",
+			groupName: "pushnews",
+			subscriberId: "123123_1231",
+			message: "lala"
+		}
+	};
+
+	/* now let's get down to business! */
+	window.addEventListener("message", function(event) {
+
+		/**
+		 * Prepare data
+		 */
+		var data = event.data;
+		try {
+			data = JSON.parse(data);
+		} catch (e) {
+			return;
+		}
+
+		if (!data.hasOwnProperty("type")) {
+			return;
+		}
+		var type = data.type;
+
+		if (!data.hasOwnProperty("data")) {
+			data.data = {};
+		}
+		data = data.data;
+
+		var responseType = data.hasOwnProperty("responseType") ? data["responseType"] : "echo";
+		var groupName = data.hasOwnProperty("groupName") ? data["groupName"] : "pushnews";
+		var savedSubscriberIds = localStorage.getItem("pnews_subscriber") ? JSON.parse(localStorage.getItem("pnews_subscriber")) : {};
+
+		/**
+		 * Send a message back to the source
+		 *
+		 * @param data
+		 */
+		var response = function(data) {
+			var message = JSON.stringify({
+				type: responseType,
+				data: data
+			});
+			event.source.postMessage(message, event.origin);
+		};
+
+		/**
+		 * Handle incoming message
+		 */
+		switch (type) {
+			case "ping":
+				console.log("PONG!");
+				response({status: true, message: "PONG!"});
+				break;
+
+			case "getSubscriberId":
+				if (null === savedSubscriberIds || !savedSubscriberIds.hasOwnProperty(groupName) || !savedSubscriberIds[groupName].length >= 1) {
+					response({status: false});
+					break;
+				}
+
+				response({status: true, groupName: groupName, subscriberId: savedSubscriberIds[groupName][0]});
+				break;
+
+			case "setSubscriberId":
+				if (!data.hasOwnProperty("subscriberId")) {
+					break;
+				}
+				var subscriberId = data.subscriberId;
+				var savedSubscriberIdsForGroupName = savedSubscriberIds.hasOwnProperty(groupName) ? savedSubscriberIds[groupName] : [];
+				savedSubscriberIdsForGroupName.push(subscriberId);
+				savedSubscriberIds[groupName] = savedSubscriberIdsForGroupName;
+				localStorage.setItem("pnews_subscriber", JSON.stringify(savedSubscriberIds));
+				break;
+		}
+	});
+</script>
+
+</body></html>

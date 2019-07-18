@@ -17,10 +17,15 @@ body {
 .imgPanorama {
     width: 100%;
     padding-top: 2%;
+    height: 240px;
 }
 
 .container {
     max-width: 1000px;
+}
+
+#logo {
+    margin-bottom: 3%;
 }
 
 
@@ -33,7 +38,7 @@ body {
 #menu {
     display: flex;
     margin-top: 3%;
-    margin-left: 20%;
+    margin-left: 9%;
 }
 
 .nav-pills .nav-link.active {
@@ -65,7 +70,7 @@ a:hover {
 /* ----------- PAGINA: INICIO -----------  */
 
 .mainPageInicio {
-    height: 2790px;
+    height: auto;
 }
 
 #carouselExampleControls {
@@ -95,6 +100,10 @@ h4 {
     padding-top: 10%;
 }
 
+.textbranco {
+    color: white;
+}
+
 .jumbotron {
     padding: 0rem 2rem;
     margin-top: 4%;
@@ -105,20 +114,22 @@ h4 {
 
 .imgNoticia {
     width: 100%;
-    height: 400px;
+    height: 240px;
 }
-
 
 /* ----------- PAGINA: EMPRESA -----------  */
 
 .mainPageEmpresa {
-    height: 1710px
+    height: 1310px;
 }
 
 .h3Titulo {
     background-color: #ffcc00;
     padding: 2%;
-    margin: 0%;
+    color: black;
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 1%;
 }
 
 .pJustify {
@@ -147,7 +158,7 @@ iframe {
 /* ----------- PAGINA: SERVICO -----------  */
 
 .mainPageServico {
-    height: 1570px
+    height: 1410px
 }
 
 .imgServico {
@@ -161,6 +172,11 @@ h3 {
     margin-top: 5%;
 }
 
+/* ----------- PAGINA: CONTATO -----------  */
+
+.mainPageContato {
+    height: auto;
+}
 
 /* ----------- PAGINA: NOTICIA -----------  */
 
@@ -207,7 +223,7 @@ div#map-container-google-11 {
 /* ----------- PAGINA: LOGIN -----------  */
 
 .mainPageLogin {
-    height: 770px;
+    height: 1000px;
 }
 
 .pageLogin {
@@ -222,12 +238,25 @@ div#map-container-google-11 {
 
 .sistemaInicio {
     height: 950px;
-    margin-top: 5%;
+    margin-top: 2%;
+}
+
+#cabecalhoSist {
+    margin-bottom: 2%;
 }
 
 .sistemaEstoque {
+    height: auto;
+    margin-top: 2%;
+}
+
+.sistemaPedido {
     height: 950px;
-    margin-top: 5%;
+    margin-top: 2%;
+}
+
+#bntdireita {
+    padding-left: 42%;
 }
 
 .tituloSistema {
@@ -258,10 +287,13 @@ div#map-container-google-11 {
     margin-bottom: 10%;
 }
 
+#bntcenter {
+    padding-left: 18%;
+}
 
 .sistemaCliente {
-    height: 950px;
-    margin-top: 5%;
+    height: auto;
+    margin-top: 2%;
 }
 
 .formularioCliente {
@@ -278,14 +310,20 @@ footer#rodape {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 3%;
 }
 
 footer#rodape p {
     color: #ffcc00;
-    text-align: center;
-    padding: 20px;
-    margin: 10px;
     right: 1000px;
+}
+
+#bntrastreio {
+    color: #ffcc00;
+}
+
+.imgRodape {
+    width: 75% !important;
 }
 
 /* -------------CSS: LOGUIN --------------- */
@@ -305,3 +343,10 @@ footer#rodape p {
     75% {margin-left: -5px;}
     100% {margin-left: 0;}
   }
+
+
+  .text-center {
+    text-align: center !important;
+  }
+
+  

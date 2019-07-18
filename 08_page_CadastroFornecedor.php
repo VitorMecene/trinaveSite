@@ -23,7 +23,8 @@
                 <div class="col-3">
                     <a href="#" class="navbar-brand d-flex align-items-center">
                         <picture>
-                            <img id=logo src="img/logos (6).png" width="300px" height="75px">
+                        <a href="index.php"><img id=logo src="img/logos (6).png" width="300px" height="75px"></a>
+            
                         </picture>
                     </a>
                 </div>
@@ -31,7 +32,7 @@
                     <nav id="menu">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link" href="01_page_inicio.html">INÍCIO</a>
+                                <a class="nav-link" href="index.php">INÍCIO</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="02_page_empresa.html">EMPRESA</a>
@@ -90,5 +91,19 @@
     </footer>
 
 </body>
+
+<script>
+
+function formatar(mascara, documento){
+  var i = documento.value.length;
+  var saida = mascara.substring(0,1);
+  var texto = mascara.substring(i)
+  
+  if (texto.substring(0,1) != saida){
+            documento.value += texto.substring(0,1);
+  }
+  
+}
+</script>
 
 </html>

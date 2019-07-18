@@ -1,0 +1,314 @@
+var _abrIDtargettedModal,
+_wpAbrilIDUrl = 'https://id.abril.com.br/',
+_abrIDcardElement = null,
+_abrIDloginInterval = null,
+_abrIDlistenerActive = false;
+var abrID = {
+    init: function(userOptions = null){
+        if(userOptions){
+            if(userOptions.wpAbrilIDUrl){
+                _wpAbrilIDUrl = userOptions.wpAbrilIDUrl.endsWith('/') ? userOptions.wpAbrilIDUrl : userOptions.wpAbrilIDUrl + '/';
+            }
+            if(userOptions.abrIDCardElement){
+                _abrIDcardElement = userOptions.abrIDCardElement;
+                this.loadAbrIDcard();
+            }
+        }
+        this._status = this.status();
+        this.loadModalHTML();
+    },
+    showModal: function(el, path = ''){
+        if(path === 'editar-conta'){
+            document.body.classList.add('edit-account');
+            this.verificaLogin(function(user){
+                if(user.status == 'success'){
+                    _abrIDtargettedModal = document.querySelector('[data-modal-name="'+ el + '"]');
+                    var ifr = _abrIDtargettedModal.querySelector('#abrIDiframe');
+                    ifr.src = _wpAbrilIDUrl + path;
+                    _abrIDtargettedModal.classList.add('is-modal-active');
+                    clearInterval(_abrIDloginInterval);
+                } else {
+                    alert('Falha na autenticação, favor entrar novamente');
+                    abrID.sairCard();
+                };
+            })
+        } else {
+            _abrIDtargettedModal = document.querySelector('[data-modal-name="'+ el + '"]');
+            var ifr = _abrIDtargettedModal.querySelector('#abrIDiframe');
+            ifr.src = _wpAbrilIDUrl + path;
+            _abrIDtargettedModal.classList.add('is-modal-active');
+            clearInterval(_abrIDloginInterval);
+            this.startLoginListernner();
+        }
+    },
+    hideModal: function(event){
+        if(event === undefined || event.target.hasAttribute('data-modal-dismiss')) {
+            _abrIDtargettedModal.classList.remove('is-modal-active');
+            document.body.classList.remove('edit-account');
+        }
+        clearInterval(_abrIDloginInterval);
+    },
+    bindEvents: function(el, callback){
+        for (i = 0; i < el.length; i++) {
+            (function(i) {
+                el[i].addEventListener('click', function(event) {
+                    callback(this, event);
+                });
+            })(i);
+        }
+    },
+    dismissModal: function(dismiss){
+        var _abrID = this;
+        _abrID.bindEvents(dismiss, function(that){
+            _abrID.hideModal();
+        });
+    },
+    startLoginListernner: function(dismiss){
+        var count = 0;
+        _abrIDloginInterval = setInterval(function(){
+            if (abrID.status() !== false){
+                clearInterval(_abrIDloginInterval);
+                if(_abrIDcardElement){
+                    abrID.loadAbrIDcard();
+                }
+                _abrIDtargettedModal.classList.remove('is-modal-active');
+                var obj = {
+                    action: 'acessar',
+                    status: 'success'
+                };
+                window.top.postMessage(obj, "*");
+            }
+        }, 750);
+    },
+    loadModalHTML: function(){
+
+        var modal = document.createElement( "div" );
+        modal.setAttribute('class', 'abrIDmodal');
+        modal.setAttribute('data-modal-name', 'abrIDModal');
+        modal.setAttribute('data-modal-dismiss', '');
+        document.body.appendChild(modal);
+
+        var dialog = document.createElement( "div" );
+        dialog.setAttribute('class', 'abrIDmodal__dialog');
+        modal.appendChild(dialog);
+
+        var close = document.createElement( "button" );
+        close.setAttribute('class', 'abrIDmodal__close');
+        close.setAttribute('data-modal-dismiss', '');
+        close.innerHTML = "&#10005";
+        dialog.appendChild(close);
+
+        var content = document.createElement( "div" );
+        content.setAttribute('class', 'abrIDmodal__content');
+        dialog.appendChild(content);
+
+        var iframe = document.createElement( "iframe" );
+        iframe.setAttribute('width', '375');
+        iframe.setAttribute('height', '632');
+        iframe.setAttribute('frameBorder', '0');
+        iframe.setAttribute('id', 'abrIDiframe');
+        content.appendChild(iframe);
+
+        var dismiss = document.querySelectorAll('[data-modal-dismiss]')
+        this.dismissModal(dismiss);
+
+    },
+    loadAbrIDcard: function(){
+        if (_abrIDcardElement) {
+            var abrIDCard = document.getElementById(_abrIDcardElement);
+            var statusArr = abrID.status();
+            abrIDCard.innerHTML = '';
+            var logged = statusArr ? ' abrIDcard__logged' : '';
+            var card = document.createElement( "div" );
+            card.setAttribute('class', 'abrIDcard__wrapper'+logged);
+            abrIDCard.appendChild(card);
+
+            if (statusArr) {
+                var avatarImgSrc = statusArr.idp === 'Abril' ? statusArr.picture + '?d=mp' : statusArr.picture;
+                var avatar = document.createElement( "img" );
+                avatar.setAttribute('class', 'abrIDcard__avatar');
+                avatar.setAttribute('src', avatarImgSrc);
+                card.appendChild(avatar);
+
+                var menu = document.createElement( "div" );
+                menu.setAttribute('class', 'abrIDcard__menu');
+                card.appendChild(menu);
+
+                var edit = document.createElement( "a" );
+                edit.setAttribute('class', 'abrIDcard__edit');
+                edit.addEventListener('click', function() { abrID.editarConta(); });
+                edit.innerHTML = 'Editar perfil';
+                menu.appendChild(edit);
+
+                var exit = document.createElement( "a" );
+                exit.setAttribute('class', 'abrIDcard__exit');
+                exit.addEventListener('click', function() { abrID.sairCard(); });
+                exit.innerHTML = 'Sair';
+                menu.appendChild(exit);
+
+            } else {
+
+                var access = document.createElement( "a" );
+                access.setAttribute('class', 'abrIDcard__access');
+                access.addEventListener('click', function() { abrID.acessar(); });
+                access.innerHTML = '<i class="icon-info"></i>';
+                card.appendChild(access);
+
+            }
+        }
+
+    },
+    acessar: function(callback = null){
+        abrID.callback(callback);
+        this.showModal('abrIDModal', 'acessar');
+    },
+    editarConta: function(callback = null){
+        abrID.callback(callback);
+
+        // Fechar o modal com post message
+        window.addEventListener('message', function(e) {
+            if ((e.data.action === "exit_card") && (e.data.status === "success")) {
+                abrID.sairCard();
+                abrID.hideModal();
+            }
+        }, false);
+
+        this.showModal('abrIDModal', 'editar-conta');
+    },
+    acessarCard: function(){
+        this.showModal('abrIDModal', 'acessar');
+    },
+    criarConta: function(callback = null){
+        abrID.callback(callback);
+        this.showModal('abrIDModal', 'criar-conta');
+    },
+    confirmarConta: function(callback = null){
+        abrID.callback(callback);
+        this.showModal('abrIDModal', 'confirmar-conta');
+    },
+    esqueciSenha: function(callback = null){
+        abrID.callback(callback);
+        this.showModal('abrIDModal', 'esqueci-a-senha');
+    },
+    novaSenha: function(callback = null){
+        abrID.callback(callback);
+        this.showModal('abrIDModal', 'nova-senha');
+    },
+    sair: function(callback = null){
+        abrID.callback(callback);
+
+        if (callback === null || typeof callback.url === 'undefined') {
+            urlRetorno = 'https://authp.abril.com.br/services/auth/?metodo=logout';
+        } else {
+            urlRetorno = 'https://authp.abril.com.br/services/auth/?metodo=logout&urlRetorno=' + callback.url;
+        }
+
+        // Postmessage Logout
+        var obj = {
+            action: 'logoutRetorno',
+            status: 'success'
+        };
+        window.top.postMessage(obj, "*");
+
+        window.location.href = urlRetorno;
+    },
+    sairCard: function(callback = null){
+        abrID.callback(callback);
+        var ifrm = document.createElement('iframe');
+        ifrm.setAttribute('src', 'https://authp.abril.com.br/services/auth/?metodo=logout&loadCard=true');
+        ifrm.style.width = '1px';
+        ifrm.style.height = '1px';
+        ifrm.style.border = 0;
+        ifrm.style.border = 'nome';
+        ifrm.id = 'sairCard'
+        document.body.appendChild(ifrm);
+        function returnLogouCard(e){
+            if (e.origin == 'https://authp.abril.com.br' && e.data.status == 'success' || e.data.action == 'logout_card') {
+                abrID.loadAbrIDcard();
+                window.removeEventListener('message', returnLogouCard, false);
+                document.getElementById('sairCard').remove();
+                abrID._status = abrID.status();
+            }
+        }
+        window.addEventListener('message', returnLogouCard, false);
+
+    },
+    status: function(){
+        var abrAuthCookie = document.cookie.replace(/(?:(?:^|.*;\s*)abrAuthCookie\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (abrAuthCookie) {
+            var abrAuthCookie = unescape(decodeURI(abrAuthCookie)).split(';');
+
+            var name = abrAuthCookie[0].split('=')[1].replace(/\+/g,' ');
+            var lastName = abrAuthCookie[1].split('=')[1].replace(/\+/g,' ');
+            var email = abrAuthCookie[2].split('=')[1];
+            var idp = abrAuthCookie[3].split('=')[1];
+            var picture = abrAuthCookie[4].replace('image=','');
+
+            var statusArr = {name:name, lastName:lastName, email:email, idp:idp, picture:picture};
+
+        } else {
+            var statusArr = false;
+        }
+        return statusArr;
+    },
+    verificaLogin: function(callback) {
+        var ifrm = document.createElement('iframe');
+        ifrm.setAttribute('src', 'https://authp.abril.com.br/services/auth/?metodo=verifica_login');
+        ifrm.style.width = '1px';
+        ifrm.style.height = '1px';
+        ifrm.style.border = 0;
+        ifrm.style.border = 'none';
+        ifrm.id = 'verificaLogin'
+        document.body.appendChild(ifrm);
+        function returnStatusUser(e){
+            if (e.origin == 'https://authp.abril.com.br' && e.data.status == 'error' || e.data.status == 'success') {
+                abrID._status = (!abrID._status) ? abrID.status() : abrID._status;
+                if(abrID._status.email !== abrID.status().email){
+                    e.data.status = 'error';
+                }
+                callback(e.data);
+                window.removeEventListener('message', returnStatusUser, false);
+                document.getElementById('verificaLogin').remove();
+            }
+        }
+        window.addEventListener('message', returnStatusUser, false);
+
+    },
+    getCookie: function(cname){
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    },
+    callback: function(callback){
+        if (callback !== null) {
+            var params = [];
+            for (key in callback) {
+                params.push(key);
+            }
+            if (params[0] === 'callback') {
+                callbackListener = function(e) {
+                    var returnFunction = eval(callback.callback);
+                    returnFunction(e.data);
+                };
+                if (!_abrIDlistenerActive) {
+                    window.addEventListener('message', callbackListener, false);
+                    _abrIDlistenerActive = true;
+                }
+            }
+        } else {
+            if (_abrIDlistenerActive) {
+                window.removeEventListener('message', callbackListener, false);
+                _abrIDlistenerActive = false;
+            }
+        }
+    }
+};

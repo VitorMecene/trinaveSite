@@ -31,7 +31,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                 <div class="col-3">
                     <a href="#" class="navbar-brand d-flex align-items-center">
                         <picture>
-                            <img id=logo src="img/logos (6).png" width="300px" height="75px">
+                        <a href="index.php"><img id=logo src="img/logos (6).png" width="300px" height="75px"></a>
                         </picture>
                     </a>
                 </div>
@@ -39,7 +39,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                     <nav id="menu">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link" href="01_page_inicio.html">INÍCIO</a>
+                                <a class="nav-link" href="index.php">INÍCIO</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="02_page_empresa.html">EMPRESA</a>
@@ -51,8 +51,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                                 <a class="nav-link" href="04_page_fale.html">CONTATO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="13_page_Deslogando.php">SAIR</a>
-                                <?php echo"<a href=''><h6>Olá ".$_SESSION['nome']."</h5></a>"?>
+                                <a href="13_page_Deslogando.php"><button type="button" class="btn btn-danger">SAIR</button></a>
                             </li>
                         </ul>
                     </nav>
@@ -60,25 +59,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
             </div>
         </div>
     </header>
-
-    <main class="sistemaCliente" role="main">
-
-        <section class="container">
-
-            <div class="row">
-                <div class="col-3">
-                    <a class="sistemaMenu" data-toggle="pill" href="07_page_sisPrincipal.php" role="tab" aria-controls="v-pills-home" aria-selected="true"><img class="iconMenu" src="img/casa.png" alt="Home">Principal</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="09_page_RegistroCliente.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/clientes.png" alt="Clientes">Cadastre seus Clientes</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="11_page_AcomPedido.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/pedidos1.png" alt="Pedidos">Pedidos</a>
-                </div>
-                <div class="col-3">
-                    <a class="sistemaMenu" id="v-pills-home-tab" data-toggle="pill" href="12_page_ProdutosEstoque.php" role="tab" aria-controls="v-pills-home" aria-selected="false"><img class="iconMenu" src="img/estoque.png" alt="Estoque">Produtos e Estoque</a>
-                </div>
-            </div>
 
     <main class="mainPageLogin" role="main">
 
@@ -92,6 +72,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                                     <?php
                                         include("funcoes.php");
                                         
+                                        $fornecedor = $_SESSION['id'];
                                         $nome = $_POST["nome"];
                                         $cnpj = $_POST["cnpj"];
                                         $telefone = $_POST["telefone"];
@@ -99,14 +80,17 @@ if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já 
                                         $n = $_POST["n"];
                                         $bairro = $_POST["bairro"];
                                         $cidade = $_POST["cidade"];
-                                        $estado = $_POST["bairro"];
+                                        $estado = $_POST["estado"];
 
-                                        $sucesso = InsereCliente($nome, $cnpj, $telefone, $endereco, $n, $bairro, $cidade, $estado);
+                                        $sucesso = InsereCliente($nome, $cnpj, $telefone, $endereco, $n, $bairro, $cidade, $estado, $fornecedor);
                                         
-                                        if($sucesso == 1)
-                                            echo "<h2>Cliente inserido na base de dados!</h2>";
-                                        else
-                                            echo "<h2>Oh oh oh....<br>Aconteceu alguma coisa errada, tente novamente!</h2>";
+                                        
+                                        if( $sucesso > 0){
+                                            $_SESSION["cliente"] = 1;
+                                            header("location: 09_page_RegistroCliente.php");}
+                                        else{
+                                            $_SESSION["cliente"] = 2;
+                                            header("location: 09_page_RegistroCliente.php");}
 
                                     ?>
                                 </div>

@@ -24,7 +24,7 @@
                 <div class="col-3">
                     <a href="#" class="navbar-brand d-flex align-items-center">
                         <picture>
-                            <img id=logo src="img/logos (6).png" width="300px" height="75px">
+                            <a href="index.php"><img id=logo src="img/logos (6).png" width="300px" height="75px"></a>
                         </picture>
                     </a>
                 </div>
@@ -32,7 +32,7 @@
                     <nav id="menu">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link" href="01_page_inicio.html">INÍCIO</a>
+                                <a class="nav-link" href="index.php">INÍCIO</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">EMPRESA</a>
@@ -46,6 +46,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="06_page_loguin.php">ENTRAR</a>
                             </li>
+       
                         </ul>
                     </nav>
                 </div>
@@ -56,15 +57,33 @@
     <main class="mainPageEmpresa" role="main">
         <section class="container">
 
-            <picture>
-                <img class="imgPanorama" src="img/empresa_panorama.png" atl="imagem panorâmica da Empresa">
-            </picture>
+            <!-- Modal -->
+            <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Rastrear seus produto</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="16_pag_Consulta.php" method="post">
+                                <div class="justify-content-md-center"><input type="text" class="form-control"
+                                        name="chave" placeholder="Ex: BR-XXXXXX"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Pesquisar</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-            <P class="pCenter">
-                Para vencer na vida não é importante chegar em primeiro. Simplesmente é preciso chegar,
-                levantando a
-                cada vez que cair pelo caminho.
-            </P>
+            <picture>
+                <img class="imgPanorama" src="img/empresa_panorama2.png" atl="imagem panorâmica da Empresa">
+            </picture>
 
             <h3 class="h3Titulo">Nossa História</h3>
 
@@ -90,18 +109,6 @@
                 coleta e entrega da carga.
             </p>
 
-            <div class="row">
-                <div class="col-4">
-                    <img src="img/emp 01.png" class="rounded mx-auto d-block" alt="Imagem Rodovias">
-                </div>
-                <div class="col-4">
-                    <img src="img/emp 02.png" class="rounded mx-auto d-block" alt="Imagem Ferrovias">
-                </div>
-                <div class="col-4">
-                    <img src="img/emp 03.png" class="rounded mx-auto d-block" alt="Imagem Aquaviário">
-                </div>
-            </div>
-
             <div class="video">
                 <iframe src="https://www.youtube.com/embed/riTTNKJsLAA" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -112,8 +119,37 @@
     </main>
 
     <footer id="rodape" class="text-muted">
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-            <p>Copyright 2013 © Company TRINAVE. Todos os direitos reservados.</p>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-4">
+                    <nav class="nav flex-column">
+                        <h6 class="textbranco">PRINCIPAL</h6>
+                        <a class="nav-link active" href="02_page_empresa.html">Quem somos?</a>
+                        <a class="nav-link" href="03_page_servico.html">Como transportamos?</a>
+                        <a class="nav-link" href="04_page_fale.html">Fale conosco</a>
+                    </nav>
+                </div>
+
+                <div class="col-4">
+                    <nav class="nav flex-column">
+                        <h6 class="textbranco">SERVIÇOS</h6>
+                        <a class="nav-link" href="06_page_loguin.php">Fornecedores</a>
+                        <a class="nav-link" href="PN_login.php">Administrativo</a>
+                    </nav>
+                </div>
+
+                <div class="col-4">
+                    <a href="04_page_fale.html"><img class="imgRodape" src="img\SAC.png"></a>
+                </div>
+            </div>
+
+
+            <div class="navbar navbar-dark bg-dark shadow-sm">
+                <p>Copyright 2013 © Company TRINAVE. Todos os direitos reservados.</p>
+            </div>
+
         </div>
     </footer>
 

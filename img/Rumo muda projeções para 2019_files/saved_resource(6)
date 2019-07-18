@@ -1,0 +1,102 @@
+var _sf_async_config = _sf_async_config || {};
+
+_sf_async_config.uid = chartbeat_params.uid
+
+_sf_async_config.domain = chartbeat_params.domain
+
+_sf_async_config.flickerControl = false
+
+_sf_async_config.useCanonical = true
+
+var _sf_startpt = (new Date()).getTime()
+
+if ( 'undefined' !== typeof chartbeat_params.categories ) {
+    _sf_async_config.sections = chartbeat_params.categories
+}
+
+if ( 'undefined' !== typeof chartbeat_params.type ) {
+    _sf_async_config.type = chartbeat_params.type
+}
+
+if ( 'undefined' !== typeof chartbeat_params.sponsor ) {
+    _sf_async_config.sponsorName = chartbeat_params.sponsor
+}
+
+if ( 'undefined' !== typeof chartbeat_params.post_author ) {
+    _sf_async_config.authors = chartbeat_params.post_author
+}
+
+(function() {
+    function loadChartbeat() {
+        var e = document.createElement('script');
+        e.setAttribute('language', 'javascript');
+        e.setAttribute('type', 'text/javascript');
+        e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');
+        e.setAttribute('defer', '');
+        document.body.appendChild(e);
+    }
+    
+    var oldonload = window.onload;
+    window.onload = (typeof window.onload != 'function') ?
+    loadChartbeat : function() {
+        oldonload();
+        loadChartbeat();
+    };
+})();
+;
+(function() {
+	var ajaxurl = window.ajaxurl || '/wp-admin/admin-ajax.php',
+		data = window.wpcomVipAnalytics,
+		dataQs, percent;
+
+	if ( typeof XMLHttpRequest === 'undefined' ) {
+		return;
+	}
+
+	if ( ! data ) {
+		return;
+	}
+
+	percent = ~~data.percentToTrack;
+	if ( percent && percent < 100 && ( ~~( ( Math.random() * 100 ) + 1 ) > percent ) ) {
+		return;
+	}
+
+	dataQs = 'action=wpcom_vip_analytics';
+
+	for ( var key in data ) {
+		if ( key === 'percentToTrack' ) {
+			continue;
+		}
+		if ( data.hasOwnProperty( key ) ) {
+			dataQs += '&' +
+				encodeURIComponent( key ).replace(/%20/g, '+' ) + '=' +
+				encodeURIComponent( data[key] ).replace(/%20/g, '+' );
+		}
+	}
+
+	function sendInfo() {
+		var xhr = new XMLHttpRequest();
+		xhr.open( 'POST', ajaxurl, true );
+		xhr.setRequestHeader( 'Content-type', 'application/x-www-form-urlencoded' );
+		xhr.send( dataQs );
+	}
+
+	// Delay for some time after the document is ready to ping
+	function docReady() {
+		setTimeout( function() {
+			sendInfo();
+		}, 1500 );
+	}
+
+	if ( document.readyState === 'complete' ) {
+		docReady.apply();
+	}
+	else if ( document.addEventListener ) {
+		document.addEventListener( 'DOMContentLoaded', docReady, false );
+	}
+	else if ( document.attachEvent ) {
+		document.attachEvent( 'onreadystatechange', docReady );
+	}
+})();
+;
