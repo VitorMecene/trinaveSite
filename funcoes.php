@@ -1,4 +1,8 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {//Verificar se a sessão não já está aberta.
+    session_start();
+  }
+
 
 $banco = mysqli_connect('localhost', 'root', '', 'trinave');
 
@@ -23,10 +27,10 @@ function InsereFornecedor($nome, $cnpj, $telefone, $email, $senha){
     return $get;
 }
 
-function InsereCliente($nome, $cnpj, $telefone, $endereco, $n, $bairro, $cidade, $estado){
+function InsereCliente($nome, $cnpj, $telefone, $endereco, $n, $bairro, $cidade, $estado, $fornecedor){
     $banco = ConectarBanco();
-    $sql = "INSERT INTO cliente(nome, cnpj, telefone, endereco, numero, bairro, cidade, estado ) 
-    VALUES ('".$nome."', '".$cnpj."', '".$telefone."', '".$endereco."', '".$n."', '".$bairro."', '".$cidade."', '".$estado."')";
+    $sql = "INSERT INTO cliente(nome, cnpj, telefone, endereco, numero, bairro, cidade, estado, fk_fornecedor ) 
+    VALUES ('".$nome."', '".$cnpj."', '".$telefone."', '".$endereco."', '".$n."', '".$bairro."', '".$cidade."', '".$estado."', '".$fornecedor."')";
     $get = mysqli_query($banco,$sql);
 
     return $get;
@@ -34,8 +38,8 @@ function InsereCliente($nome, $cnpj, $telefone, $endereco, $n, $bairro, $cidade,
 
 function InsereProduto($id_fornecedor, $nome, $valor, $ativo, $perfil, $descricao, $observacao, $largura, $comprimento, $espessura, $quantidade, $peso){
     $banco = ConectarBanco();
-    $sql = "INSERT INTO cliente(id_fornecedor, nome, valor, ativo, perfil, descricao, observacao, largura, comprimento, espessura, quantidade, peso) 
-    VALUES ('".$id_fornecedor."','".$nome."','".$valor."','".$ativo."','".$perfil."','".$descricao."','".$observacao."','".$largura."','".$comprimento."','".$espessura."','".$quantidade."','".$peso."')";
+    $sql = "INSERT INTO produto (id_fornecedor, nome, valor, ativo, perfil, descricao, observacao, largura, comprimento, espessura, quantidade, peso) 
+    VALUES ('".$_SESSION['id']."','".$nome."','".$valor."','".$ativo."','".$perfil."','".$descricao."','".$observacao."','".$largura."','".$comprimento."','".$espessura."','".$quantidade."','".$peso."')";
     $get = mysqli_query($banco,$sql);
 
     return $get;

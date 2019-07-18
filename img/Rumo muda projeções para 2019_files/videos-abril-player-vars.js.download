@@ -1,0 +1,15 @@
+if('undefined'!==typeof(playerVars)){var getVast=parent.document.querySelectorAll('#player_'+playerVars.mediaId+' iframe')[0];var queryVast="";if('object'===typeof(getVast)){queryVast=getVast.dataset.vast;}
+abrVPlayer={brand:playerVars.brand,playerHash:playerVars.playerHash,mediaId:playerVars.mediaId,autoStart:playerVars.autoStart,startOutput:playerVars.startOutput,html5:playerVars.html5,w:playerVars.w,h:playerVars.h,id:"",title:"",duration:0,currTime:0,state:0,currEvent:"",start:false,finish:false,q1:false,q2:false,q3:false,countMedia:0,vast:queryVast.replace(/&amp;/g,"&")};}else{abrVPlayer={};}
+function getMediaInfo(){player.getStatus(function(media){abrVPlayer.id=media.id;abrVPlayer.title=media.title;});}
+function getCurrStatus(){player.getStatus(function(media){abrVPlayer.duration=media.status["bufferEnd"];abrVPlayer.currTime=media.status["time"];abrVPlayer.state=media.status["state"];});}
+function showInfo(){return;}
+function initMedia(){getMediaInfo();showInfo();if(abrVPlayer.countMedia==1&&!abrVPlayer.start){hitEvent("Started");abrVPlayer.start=true;}}
+function finishMedia(){getCurrStatus();showInfo();if(((abrVPlayer.state!=3)||(abrVPlayer.countMedia==2))&&!abrVPlayer.finish){hitEvent("Completed");abrVPlayer.finish=true;}}
+function eventListener(player){abrVPlayer.currEvent=player.event;var eventParam=(player.eventParam)?player.eventParam:"";getCurrStatus();switch(abrVPlayer.currEvent)
+{case"onLoad":hitEvent("Player Loaded");abrVPlayer.start=false;abrVPlayer.q1=false;abrVPlayer.q2=false;abrVPlayer.q3=false;abrVPlayer.finish=false;abrVPlayer.countMedia=0;showInfo();break;case"onStart":abrVPlayer.countMedia+=1;window.setTimeout("initMedia()",2000);break;case"onMediaView":if(eventParam=="25%"&&!abrVPlayer.q1){abrVPlayer.q1=true;if(abrVPlayer.countMedia==1){hitEvent("First Quartile");}}else if(eventParam=="50%"&&!abrVPlayer.q2){abrVPlayer.q2=true;hitEvent("Mid Point");}else if(eventParam=="75%"&&!abrVPlayer.q3){abrVPlayer.q3=true;hitEvent("Third Quartile");}
+showInfo();break;case"onFinish":finishMedia();break;}
+window.parent.postMessage(abrVPlayer.currEvent,'*');}
+function hitEvent(playerEvent){_gaq.push(['_trackEvent',abrVPlayer.brand,playerEvent,abrVPlayer.mediaId]);}
+(function(){var e=window,a="inner";if(!('innerWidth'in window)){a='client';e=document.documentElement||document.body;}
+if(e){abrVPlayer.w=e[a+'Width'];abrVPlayer.h=e[a+'Height'];}
+if(navigator.userAgent.indexOf("Chrome")!=-1){abrVPlayer.html5=true;}})();
